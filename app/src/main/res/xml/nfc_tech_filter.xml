@@ -2,6 +2,6 @@
 <resources>
     <tech-list>
         <tech>android.nfc.tech.Ndef</tech>
-        <tech>android.nfc.tech.NdefFormatable</tech>
+        <!-- Class name -->
     </tech-list>
 </resources>

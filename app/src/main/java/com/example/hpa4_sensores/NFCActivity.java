@@ -1,7 +1,6 @@
 package com.example.hpa4_sensores;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +11,7 @@ import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.nfc.tech.Ndef;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
@@ -20,7 +20,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
@@ -46,14 +45,23 @@ public class NFCActivity extends AppCompatActivity {
         nfc_content = (TextView) findViewById(R.id.nfc_contents);
         btnWrite = (Button) findViewById(R.id.button);
         context = this;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            pendingIntent = PendingIntent.getActivity(this,
+                    0, this.getIntent(), PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
+        }else {
+            pendingIntent = PendingIntent.getActivity(this,
+                    0,this.getIntent(), PendingIntent.FLAG_UPDATE_CURRENT);
+
+        }
         btnWrite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try{
                     if (myTag == null) {
                         Toast.makeText(context, Error_Detected, Toast.LENGTH_LONG).show();
-                    } else {
+                    }
+                    else {
                         write("Plain Text |" + edit_message.getText().toString(), myTag);
                         Toast.makeText(context, Write_Success, Toast.LENGTH_LONG).show();
                     }
@@ -75,12 +83,9 @@ public class NFCActivity extends AppCompatActivity {
                 finish();
             }
             readFromIntent(getIntent());
-            pendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
             IntentFilter tagDetected = new IntentFilter(NfcAdapter.ACTION_TAG_DISCOVERED);
             tagDetected.addCategory(Intent.CATEGORY_DEFAULT);
             writeTagFilters = new IntentFilter[] { tagDetected };
-
-
 
     }
 
@@ -118,7 +123,6 @@ public class NFCActivity extends AppCompatActivity {
         } catch (Exception e) {
             Log.e("Unsupported Encoding", e.toString());
         }
-
         nfc_content.setText(text);
     }
 
@@ -134,7 +138,7 @@ public class NFCActivity extends AppCompatActivity {
         // Close the connection
         ndef.close();
     }
-    
+
 
     private NdefRecord createRecord(String text) throws UnsupportedEncodingException {
         String lang      = "en";
@@ -183,6 +187,7 @@ public class NFCActivity extends AppCompatActivity {
     private void WriteModeOn() {
         writeMode = true;
         nfcAdapter.enableForegroundDispatch(this, pendingIntent, writeTagFilters, null);
+
     }
 
     private void WriteModeOff() {
@@ -190,5 +195,4 @@ public class NFCActivity extends AppCompatActivity {
         nfcAdapter.disableForegroundDispatch(this);
     }
 
-            
 }
