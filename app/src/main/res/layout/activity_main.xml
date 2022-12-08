@@ -6,12 +6,53 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
+    <Button
+        android:id="@+id/btnNFC"
+        android:layout_width="220dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="26dp"
+        android:text="NFC"
+        app:layout_constraintBottom_toTopOf="@+id/btnHuellas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/btnHuellas"
+        android:layout_width="220dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="34dp"
+        android:text="Huellas"
+        app:layout_constraintBottom_toTopOf="@+id/btnSensor3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnNFC" />
+
+    <Button
+        android:id="@+id/btnSensor3"
+        android:layout_width="220dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="277dp"
+        android:text="Sensor 3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnHuellas" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="102dp"
+        android:layout_marginBottom="67dp"
+        android:text="Elige un sensor"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnNFC"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
