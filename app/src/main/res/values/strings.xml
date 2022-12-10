@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">HPA4_Sensores</string>
+    <string name="revisar_huella">Revisar Huella</string>
+    <string name="regresar">Regresar</string>
 </resources>

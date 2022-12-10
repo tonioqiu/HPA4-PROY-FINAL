@@ -1,14 +1,73 @@
 package com.example.hpa4_sensores;
 
-import androidx.appcompat.app.AppCompatActivity;
+import static com.example.hpa4_sensores.R.id.btn_autenticar;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.biometric.BiometricPrompt;
+import androidx.core.content.ContextCompat;
+
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+
+import java.util.concurrent.Executor;
 
 public class FingerPrintActivity extends AppCompatActivity {
-
+    Button btn_autenticar, btn_regresar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_finger_print2);
+
+        btn_autenticar = findViewById(R.id.btn_autenticar);
+        btn_regresar = findViewById(R.id.btn_regresar);
+
+        btn_regresar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent regresar = new Intent(FingerPrintActivity.this, MainActivity.class);
+                startActivity(regresar);
+            }
+        });
+        btn_autenticar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                BiometricPrompt.PromptInfo promptinfo = new BiometricPrompt.PromptInfo.Builder()
+                        .setTitle("Please Verify")
+                        .setDescription("User Authentication")
+                        .setNegativeButtonText("Cancel")
+                        .build();
+                getPromt().authenticate(promptinfo);
+            }
+        });
+
+    }
+
+    private BiometricPrompt getPromt(){
+        Executor executor = ContextCompat.getMainExecutor(this);
+        BiometricPrompt.AuthenticationCallback callback = new BiometricPrompt.AuthenticationCallback() {
+            @Override
+            public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
+                super.onAuthenticationError(errorCode, errString);
+                Toast.makeText(getApplicationContext(),errString,Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
+                super.onAuthenticationSucceeded(result);
+                Toast.makeText(getApplicationContext(),"Huella Verificado correctamente",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onAuthenticationFailed() {
+                super.onAuthenticationFailed();
+                Toast.makeText(getApplicationContext(),"Huella incorrecta",Toast.LENGTH_SHORT).show();
+            }
+        };
+        BiometricPrompt biometricPrompt = new BiometricPrompt(this,executor,callback);
+        return biometricPrompt;
     }
 }
