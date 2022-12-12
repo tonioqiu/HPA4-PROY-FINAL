@@ -8,8 +8,8 @@
 
     <Button
         android:id="@+id/btnNFC"
-        android:layout_width="220dp"
-        android:layout_height="0dp"
+        android:layout_width="258dp"
+        android:layout_height="53dp"
         android:layout_marginBottom="26dp"
         android:text="NFC"
         app:layout_constraintBottom_toTopOf="@+id/btnHuellas"
@@ -20,22 +20,22 @@
 
     <Button
         android:id="@+id/btnHuellas"
-        android:layout_width="220dp"
-        android:layout_height="0dp"
+        android:layout_width="259dp"
+        android:layout_height="60dp"
         android:layout_marginBottom="34dp"
         android:text="Huellas"
-        app:layout_constraintBottom_toTopOf="@+id/btnSensor3"
+        app:layout_constraintBottom_toTopOf="@+id/btnVoice"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnNFC" />
 
     <Button
-        android:id="@+id/btnSensor3"
-        android:layout_width="220dp"
-        android:layout_height="0dp"
+        android:id="@+id/btnVoice"
+        android:layout_width="261dp"
+        android:layout_height="60dp"
         android:layout_marginBottom="277dp"
-        android:text="Sensor 3"
+        android:text="Reconocimiento de Voz"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
