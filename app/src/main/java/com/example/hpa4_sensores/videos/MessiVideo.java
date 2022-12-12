@@ -23,7 +23,23 @@ public class MessiVideo extends AppCompatActivity {
         VideoView videoView = findViewById(R.id.videoView);
         Button btnRegresar = findViewById(R.id.btnRegresar);
 
-        String videoPath = "android.resource://" + getPackageName() + "/" + R.raw.messi;
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        String videoName = extras.getString("video");
+        System.out.println("Esto es: " + videoName);
+
+        String videoPath= "";
+
+        if (videoName.equals("Messi")){
+             videoPath = "android.resource://" + getPackageName() + "/" + R.raw.messi;
+
+        }
+
+        else if (videoName.equals("One Piece")){
+             videoPath = "android.resource://" + getPackageName() + "/" + R.raw.mejorcancion;
+        }
+
+
         Uri uri = Uri.parse(videoPath);
         videoView.setVideoURI(uri);
 

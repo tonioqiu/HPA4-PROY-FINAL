@@ -23,7 +23,7 @@ import java.util.ArrayList;
 
 public class VoiceActivity extends AppCompatActivity {
 
-    int count;
+    int count = 0;
     ImageButton imageButton;
     EditText editText;
 
@@ -46,6 +46,8 @@ public class VoiceActivity extends AppCompatActivity {
         speechRecognizer=SpeechRecognizer.createSpeechRecognizer(this);
 
         Intent speechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "es-MX");
 
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,11 +55,13 @@ public class VoiceActivity extends AppCompatActivity {
 
                 if(count==0){
 
+                    imageButton.setImageDrawable(getDrawable(R.drawable.ic_baseline_mic_24));
                     speechRecognizer.startListening(speechRecognizerIntent);
-                count=1;
+                    count=1;
                 }
 
                 else{
+                    imageButton.setImageDrawable(getDrawable(R.drawable.ic_baseline_mic_off_24));
                     speechRecognizer.stopListening();
                     count=0;
                 }
@@ -98,14 +102,32 @@ public class VoiceActivity extends AppCompatActivity {
             @Override
             public void onResults(Bundle results) {
 
-                ArrayList<String> data = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+                ArrayList<String> data = results.getStringArrayList(speechRecognizer.RESULTS_RECOGNITION);
 
                 editText.setText(data.get(0));
 
-                if(data.get(0).trim() == "que miras bobo"){
-                    Intent videointent = new Intent (VoiceActivity.this , MessiVideo.class);
+                Intent videointent = new Intent (VoiceActivity.this , MessiVideo.class);
+
+                if(data.get(0).equals("Messi")){
+                    videointent.putExtra("video", "Messi");
                     startActivity(videointent);
                 }
+
+                else if(data.get(0).equals("One Piece")){
+                    videointent.putExtra("video", "One Piece");
+                    startActivity(videointent);
+
+                }
+
+
+
+                data.clear();
+
+
+
+
+
+
 
 
             }
