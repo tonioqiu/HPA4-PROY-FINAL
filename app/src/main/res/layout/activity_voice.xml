@@ -6,4 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".VoiceActivity">
 
+
+    <EditText
+        android:id="@+id/edtMic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Tap to speak"
+        android:inputType="textPersonName"
+        android:text="Name"
+        tools:layout_editor_absoluteX="100dp"
+        tools:layout_editor_absoluteY="343dp" />
+
+    <ImageButton
+        android:id="@+id/btnMic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_btn_speak_now"
+        tools:layout_editor_absoluteX="321dp"
+        tools:layout_editor_absoluteY="336dp" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
