@@ -17,6 +17,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.hpa4_sensores.videos.MessiVideo;
+
 import java.util.ArrayList;
 
 public class VoiceActivity extends AppCompatActivity {
@@ -99,6 +101,12 @@ public class VoiceActivity extends AppCompatActivity {
                 ArrayList<String> data = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
 
                 editText.setText(data.get(0));
+
+                if(data.get(0).trim() == "que miras bobo"){
+                    Intent videointent = new Intent (VoiceActivity.this , MessiVideo.class);
+                    startActivity(videointent);
+                }
+
 
             }
 

@@ -18,6 +18,9 @@
         android:theme="@style/Theme.HPA4_Sensores"
         tools:targetApi="31">
         <activity
+            android:name=".videos.MessiVideo"
+            android:exported="false" />
+        <activity
             android:name=".VoiceActivity"
             android:exported="false" />
         <activity
