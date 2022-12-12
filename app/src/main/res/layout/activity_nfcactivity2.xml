@@ -12,41 +12,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
+        android:layout_marginBottom="113dp"
         android:text="NFC SENSOR"
         android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:text="Write"
-        app:layout_constraintBaseline_toBaselineOf="@+id/edit_message"
-        app:layout_constraintStart_toEndOf="@+id/edit_message" />
-
-    <EditText
-        android:id="@+id/edit_message"
-        android:layout_width="237dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="33dp"
-        android:layout_marginTop="108dp"
-        android:ems="10"
-        android:hint="nfc message to wirte"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/nfc_contents"
-        android:layout_width="346dp"
-        android:layout_height="114dp"
-        android:layout_marginTop="45dp"
-        android:text="NFC Text: "
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="286dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="290dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:srcCompat="@drawable/nfc" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
